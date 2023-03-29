@@ -1,4 +1,4 @@
-    <h1>emTagExtractor</h1>
+<h1>emTagExtractor</h1>
     <a href="https://opensource.org/licenses/MIT">
       <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">
     </a>
@@ -22,4 +22,4 @@
     <h2>Contributing</h2>
     <p>If you find a bug or have an idea for a new feature, feel free to open an issue or submit a pull request!</p>
     <h2>License</h2>
-    <p>emTagExtractor is licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
+<p>emTagExtractor is licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
