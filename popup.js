@@ -2,17 +2,26 @@ let uniqueEmTextArray = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "extractEmTags" }, (response) => {
-      if (response) {
-        uniqueEmTextArray = removeDuplicates(response);
-        displayResult(uniqueEmTextArray);
+    const tabId = tabs[0].id;
+    chrome.scripting.executeScript(
+      {
+        target: { tabId: tabId },
+        files: ['content_script.js'],
+      },
+      () => {
+        chrome.tabs.sendMessage(tabId, { action: "extractEmTags" }, (response) => {
+          if (response) {
+            uniqueEmTextArray = removeDuplicates(response);
+            displayResult(uniqueEmTextArray);
+          }
+        });
       }
-    });
+    );
   });
 });
 
 function removeDuplicates(array) {
-  return [...new Set(array)];
+  return [...new Set(array.map(item => item.toLowerCase()))].map(item => item.trim());
 }
 
 function displayResult(emTags) {

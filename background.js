@@ -1,4 +1,4 @@
-chrome.browserAction.onClicked.addListener((tab) => {
+chrome.action.onClicked.addListener((tab) => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id, { action: "extractEmTags" }, (response) => {
       if (response) {
@@ -11,5 +11,5 @@ chrome.browserAction.onClicked.addListener((tab) => {
 });
 
 function removeDuplicates(array) {
-  return [...new Set(array)];
+  return [...new Set(array.map(item => item.toLowerCase()))].map(item => item.trim());
 }
